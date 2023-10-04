@@ -60,15 +60,23 @@
         if($this->form_validation->run()== FALSE){
 
            
-            $data['main_view'] = 'users/register_view';
-            $this->load->view('layouts/main', $data);
+            $data['login1_view'] = 'register-1';
+            $this->load->view('layouts/custom_main', $data);
 
         }else{
-             // redirect ('http://google.com');
+             if($this->user_model->create_user()){
+
+                $this->session->set_flashdata('user_registered','User has been Registered');
+                redirect('users/login');
+             }else{
+
+             }
+             
         }
        
 
     }
+
 
     public function login(){
         
@@ -111,10 +119,10 @@
                 }
                 $this->session->set_userdata($user_data);
                 $this->session->set_flashdata('login_success','You are now logged in');
-                // redirect ('home/index');
+                redirect ('home/index');
 
-                $data['main_view'] = "profile-2";
-                $this->load->view('layouts/main', $data);
+                // $data['main_view'] = "profile-2";
+                // $this->load->view('layouts/main', $data);
             }else{
                 
                 $this->session->set_flashdata('login_failed','Sorry you are not logged in');
