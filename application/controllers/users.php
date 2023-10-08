@@ -119,7 +119,7 @@
                 }
                 $this->session->set_userdata($user_data);
                 $this->session->set_flashdata('login_success','You are now logged in');
-                redirect ('home/index');
+                redirect ('post/index');
 
                 // $data['main_view'] = "profile-2";
                 // $this->load->view('layouts/main', $data);

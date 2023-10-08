@@ -6,7 +6,6 @@
     <?php endif; ?>
 </p>
 
-
 						<!--Page header-->
 						<div class="page-header">
 							<div class="page-leftheader">
@@ -102,16 +101,19 @@
 								<div class="wideget-user-tab">
 									<div class="tab-menu-heading p-0">
 										<div class="tabs-menu1 px-3">
-											<ul class="nav">
-												<li><a href="#tab-7"  data-toggle="tab">About</a></li>
-												<li><a href="#tab-8" data-toggle="tab" class="">Friends</a></li>
-												<li><a href="#tab-9" class="active" data-toggle="tab" class="">Timeline</a></li>
-											</ul>
+										<ul class="nav">
+											<li><a href="#tab-7" data-toggle="tab">About</a></li>
+											<li><a href="#tab-8" data-toggle="tab">Friends</a></li>
+											<li><a href="#tab-9" data-toggle="tab">Timeline</a></li>
+										</ul>
 										</div>
 									</div>
 								</div>
 							</div><!-- /.profile-cover -->
 						</div>
+						<div class="text-lg-right mt-4 mt-lg-0">	
+								<a class="btn btn-primary " href="<?php echo base_url();?>post/create" >Create Post</a>
+							</div>
 						<!-- Row -->
 						<div class="row">
 							<div class="col-xl-12 col-lg-12 col-md-12">
@@ -369,26 +371,69 @@
 											</div>
 										</div>
 										<div class="tab-pane active" id="tab-9">
-											<ul class="timelineleft pb-5">
-												<li class="timeleft-label"><span class="bg-danger">10 May. 2020</span></li>
+										<ul class="timelineleft pb-5">
+											<?php
+											$previous_date = ''; // Initialize a variable to store the previous date
+											foreach ($post as $posts):
+												$timestamp = strtotime($posts->time_posted);
+												$formatted_date = date('d M. Y', $timestamp);
+												
+												// Calculate the time difference in seconds
+												$time_difference = $timestamp;
+
+												// Convert seconds to a human-readable format
+												$time_since_posted = get_time_elapsed_string($time_difference);
+
+												// Check if the current date is the same as the previous date
+												$same_date = ($formatted_date === $previous_date);
+												?>
+
+												<?php if (!$same_date): // Display the date only if it's different from the previous date ?>
+													<li class="timeleft-label"><span class="bg-danger"><?php echo $formatted_date; ?></span></li>
+												<?php endif; ?>
+
 												<li>
-													<i class="fa fa-envelope bg-primary"></i>
-													<div class="timelineleft-item">
-														<span class="time"><i class="fa fa-clock-o text-danger"></i> 12:05</span>
-														<h3 class="timelineleft-header"><a href="#">Support Team</a> <span>sent you an email</span></h3>
-														<div class="timelineleft-body">
-															Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-															weebly ning heekya handango imeem plugg dopplr jibjab, movity
-															jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-															quora plaxo ideeli hulu weebly balihoo...
+													<?php if (strpos($posts->content, 'youtube.com') === false): ?>
+														<i class="fa fa-envelope bg-primary"></i>
+														<div class="timelineleft-item">
+															<span class="time"><i class="fa fa-clock-o text-danger"></i><?php echo $time_since_posted; ?></span>		
+															<h3 class="timelineleft-header"><?php echo $posts->first_name . ' ' . $posts->last_name; ?> <span>posted</span></h3>
+															<div class="timelineleft-body">
+																<?php echo $posts->content; ?>
+															</div>
+															<div class="timelineleft-footer">
+															<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>Read More</a>"; ?>
+															</div>
 														</div>
-														<div class="timelineleft-footer">
-															<a class="btn btn-primary text-white btn-sm">Read more</a>
-															<a class="btn btn-secondary text-white btn-sm ">Delete</a>
-														</div>
-													</div>
+													<?php else: // Content is text ?>
+														<?php
+														$youtube_url = $posts->content;
+														$video_id = get_youtube_video_id($youtube_url);
+														?>
+														<?php if ($video_id): // Check if a video ID was successfully extracted ?>
+															<i class="fa fa-video-camera bg-pink"></i>
+															<div class="timelineleft-item">
+																<span class="time"><i class="fa fa-clock-o text-danger"></i> <?php echo $time_since_posted; ?></span>
+																<h3 class="timelineleft-header"><?php echo $posts->first_name . ' ' . $posts->last_name; ?> shared a video</h3>
+																<div class="timelineleft-body">
+																	<div class="embed-responsive embed-responsive-16by9 w-75">
+																		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" allowfullscreen></iframe>
+																	</div>
+																</div>
+																<div class="timelineleft-footer">
+																<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>Read More</a>"; ?>
+																</div>
+															</div>
+														<?php else: // Content is text ?>
+															<?php echo "Hello"; ?>
+														<?php endif; ?>
+													<?php endif; ?>
 												</li>
-												<li>
+
+												<?php $previous_date = $formatted_date; // Update the previous date ?>
+											<?php endforeach; ?>
+
+												<!-- <li>
 													<i class="fa fa-user bg-secondary"></i>
 													<div class="timelineleft-item">
 														<span class="time"><i class="fa fa-clock-o text-danger"></i> 5 mins ago</span>
@@ -409,8 +454,8 @@
 															<a class="btn btn-info text-white btn-flat btn-sm">View comment</a>
 														</div>
 													</div>
-												</li>
-												<li>
+												</li> -->
+												<!-- <li>
 													<i class="fa fa-video-camera bg-pink"></i>
 													<div class="timelineleft-item">
 														<span class="time"><i class="fa fa-clock-o text-danger"></i> 1 hour ago</span>
@@ -428,8 +473,8 @@
 															<a href="#" class="btn btn-sm bg-warning text-white">See comments</a>
 														</div>
 													</div>
-												</li>
-												<li class="timeleft-label">
+												</li> -->
+												<!-- <li class="timeleft-label">
 													<span class="bg-success"> 3 Jan. 2014</span>
 												</li>
 												<li>
@@ -460,7 +505,7 @@
 															<a href="#" class="btn btn-sm bg-warning text-white">See comments</a>
 														</div>
 													</div>
-												</li>
+												</li> -->
 												<li>
 													<i class="fa fa-clock-o bg-success pb-3"></i>
 												</li>
@@ -471,3 +516,5 @@
 							</div>
 						</div>
 
+			
+         

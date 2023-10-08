@@ -2,13 +2,30 @@
 
 class Home extends CI_Controller {
 
-    public function index(){
+    
+    // public function index(){
 
-        $data['main_view'] = "profile-2";
+    // // Load the necessary helpers and model
+    // $this->load->helper('youtube');
+    // $this->load->helper('timesince');
+    // $this->load->model('post_model');
+    
+    // // Get the posts from the model
+    // $data['post'] = $this->post_model->get_posts();
 
-        $this->load->view('layouts/main', $data);
+    // // Define the comparePosts function
+    // function comparePosts($a, $b) {
+    //     return strtotime($b->time_posted) - strtotime($a->time_posted);
+    // }
+
+    // // Sort the $data['post'] array using the custom comparison function
+    // usort($data['post'], 'comparePosts');
+
+    // // Set the main view and load the layout view
+    // $data['main_view'] = "profile-2";
+    // $this->load->view('layouts/main', $data);
         
-    }
+    // }
     public function login1(){
 
         $data['login1_view'] = "login-1";
