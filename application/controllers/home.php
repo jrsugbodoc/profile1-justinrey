@@ -26,6 +26,11 @@ class Home extends CI_Controller {
     // $this->load->view('layouts/main', $data);
         
     // }
+    public function index(){
+        
+        redirect ('home/login1');
+    }
+
     public function login1(){
 
         $data['login1_view'] = "login-1";

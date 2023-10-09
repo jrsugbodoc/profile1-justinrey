@@ -25,6 +25,7 @@ class Post_model extends CI_Model{
     if ($query->num_rows() > 0) {
         $result = $query->row();
         return $result->first_name . ' ' . $result->last_name;
+        
         }
     }
     
@@ -42,7 +43,6 @@ class Post_model extends CI_Model{
         $this->db->where('post_id', $id);
         $query = $this->db->get('post');
         
-
         return $query->row();
 
     }
@@ -64,11 +64,9 @@ class Post_model extends CI_Model{
 
         $this->db->where('post_id', $post_id);
         $this->db->delete('post');
-
-        
+    
     }
 
 }
-
 
 ?>

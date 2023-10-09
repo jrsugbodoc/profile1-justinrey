@@ -11,12 +11,10 @@ class Post extends CI_Controller {
                 $this->session->set_flashdata('no_access', 'Access Denied');
                 redirect('home/login1');
             }
-    
         }
 
     public function index(){
 
-        // Load the necessary helpers and model
         $this->load->helper('youtube');
         $this->load->helper('timesince');
         $this->load->model('post_model');
@@ -52,7 +50,6 @@ class Post extends CI_Controller {
             $data = array(
                 'user_post_id' => $this->session->userdata('user_id'),
                 'content' => $this->input->post('content')
-                
             );
 
             if($this->post_model->create_post($data)){
@@ -61,12 +58,10 @@ class Post extends CI_Controller {
                 redirect("post/index");
             }
         }
-
     }
 
     public function edit($post_id){
         
-
         $this->form_validation->set_rules('content','Content','trim|required');
 
         if($this->form_validation->run()== FALSE){
@@ -79,7 +74,6 @@ class Post extends CI_Controller {
 
             $data = array(
                 'content' => $this->input->post('content')
-  
             );
 
             if($this->post_model->edit_post($post_id,$data)){
@@ -88,10 +82,10 @@ class Post extends CI_Controller {
                 redirect("post/index");
             }
         }
-
     }
 
     public function display($post_id){
+        $this->load->helper('youtube');
 
         $logged_in_user_id = $this->session->userdata('user_id');
 
