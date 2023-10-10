@@ -14,16 +14,13 @@
 												<hr>
 												<p class="text-muted">Sign In to your account</p>
 											</div>
-
 											<?php
-                                            // Open the CodeIgniter form
                                             $attributes = array('id' => 'login_form', 'class' => 'form_horizontal');
                                             echo form_open('users/login', $attributes);
                                             ?>
 
 											<div class="form-group">
 												<?php
-                                                // Generate the username input field
                                                 echo form_label('Username');
                                                 $data = array(
                                                     'class' => 'form-control',
@@ -36,7 +33,6 @@
 
 											<div class="form-group">
 												<?php
-                                                // Generate the password input field
                                                 echo form_label('Password');
                                                 $data = array(
                                                     'class' => 'form-control',
@@ -49,7 +45,6 @@
 
 											<div class="form-group">
 												<?php
-                                                // Generate the Login button
                                                 $data = array(
                                                     'class' => 'btn btn-lg btn-primary btn-block',
                                                     'name' => 'submit',
@@ -59,9 +54,7 @@
                                                 ?>
 											</div>
 											
-                                            // Close the CodeIgniter form
                                             <?php echo form_close(); ?>
-                                            
 											<div class="col-12">
 												<a href="<?php echo base_url('pages/forgot-password-1'); ?>"
 													class="btn btn-link box-shadow-0 px-0">Forgot password?</a>

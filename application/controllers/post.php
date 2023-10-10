@@ -5,10 +5,11 @@ class Post extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
+
+
     
             if(!$this->session->userdata('logged_in')){
     
-                $this->session->set_flashdata('no_access', 'Access Denied');
                 redirect('home/login1');
             }
         }
@@ -49,7 +50,8 @@ class Post extends CI_Controller {
 
             $data = array(
                 'user_post_id' => $this->session->userdata('user_id'),
-                'content' => $this->input->post('content')
+                'content' => $this->input->post('content'),
+                'time_posted' => gmdate('Y-m-d h:i:s')
             );
 
             if($this->post_model->create_post($data)){
@@ -79,7 +81,7 @@ class Post extends CI_Controller {
             if($this->post_model->edit_post($post_id,$data)){
                 $this->session->set_flashdata('post_updated','Post Updated');
 
-                redirect("post/index");
+                redirect("post/display/" . $post_id);
             }
         }
     }

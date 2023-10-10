@@ -1,17 +1,24 @@
-<div class="row">
-	<div class="col-xl-12 col-lg-12 col-md-12">
+<div class="row pt-7">
+	<div class="col-xl-12 col-lg-12 col-md-12 ">
 		<div class="card overflow-hidden">
-			<div class="card-body">
-				<div class="item7-card-desc d-md-flex mb-5">
-					<div class="d-flex mr-3 mb-2"><svg class="svg-icon mr-2" xmlns="http://www.w3.org/2000/svg"
+			<div class=" card-body ">
+				<div class="item7-card-desc d-md-flex mb-5 ">
+				<?php echo "<a href='" . base_url() . "post/index' class='btn btn-white text-black btn-sm mr-5'>" ?>
+    				<i class="fa fa-arrow-left" data-toggle="tooltip" title="" data-original-title="Go Back"></i>
+					</a>
+					<div class="d-flex mr-3 mb-2 mt-2" ><svg class="svg-icon mr-2" xmlns="http://www.w3.org/2000/svg"
 							height="18" viewBox="0 0 24 24" width="18">
 							<path d="M0 0h24v24H0V0z" fill="none" />
 							<path
 								d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z" />
 							<path d="M4 5.01h16V8H4z" opacity=".3" /></svg>
-						<div class="mt-0"><?php echo $post_data->time_posted; ?></div>
+							<?php
+							$timestamp = strtotime($post_data->time_posted);
+							$formatted_date = date(' M. d Y', $timestamp);
+							?>
+						<div class="mt-0"><?php echo $formatted_date; ?></div>
 					</div>
-					<div class="d-flex mb-2"><svg class="svg-icon mr-2" xmlns="http://www.w3.org/2000/svg" height="18"
+					<div class="d-flex mb-2 mt-2"><svg class="svg-icon mr-2" xmlns="http://www.w3.org/2000/svg" height="18"
 							viewBox="0 0 24 24" width="18">
 							<path d="M0 0h24v24H0V0z" fill="none"></path>
 							<path d="M12 16c-2.69 0-5.77 1.28-6 2h12c-.2-.71-3.3-2-6-2z" opacity=".3"></path>
@@ -35,17 +42,17 @@
 						</a>
 					</div>
 				</div>
-				<?php if (strpos($post_data->content, 'youtube.com') === true): ?>
+				<?php if (strpos($post_data->content, 'https://www.youtube.com/') == true): ?>
 				<?php
 					$youtube_url = $post_data->content;
 					$video_id = get_youtube_video_id($youtube_url);
-					?>
-				<?php if ($video_id): ?>
-				<div class="embed-responsive embed-responsive-16by9 w-75">
-					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
-						allowfullscreen></iframe>
-				</div>
-				<?php endif;?>
+				?>
+					<?php if ($video_id): ?>
+					<div class="embed-responsive embed-responsive-16by9 w-75">
+						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
+							allowfullscreen></iframe>
+					</div>
+					<?php endif;?>
 				<?php else: ?>
 				<p>
 					<?php echo $post_data->content;?>

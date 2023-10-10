@@ -7,6 +7,9 @@ if (!function_exists('get_time_elapsed_string')) {
         $current_time = time();
         $time_difference = $current_time - $timestamp;
 
+        if ($time_difference < 30) {
+            return "just now";
+        }
         $units = [
             "year"   => 31536000, // Seconds in a year
             "month"  => 2629743,  // Seconds in a month
@@ -28,14 +31,6 @@ if (!function_exists('get_time_elapsed_string')) {
                 }
             }
         }
-
-        // Handle seconds and minutes
-        if ($time_difference >= 45) {
-            return "about a minute ago";
-        } elseif ($time_difference >= 1) {
-            return $time_difference . " seconds ago";
-        }
-
-        return "just now";
+        
     }
 }

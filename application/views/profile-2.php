@@ -1,10 +1,3 @@
-<p class="bg-success">
-	<?php if($this->session->flashdata('login_success')): ?>
-
-	<?php echo $this->session->flashdata('login_success')?>
-
-	<?php endif; ?>
-</p>
 
 <!--Page header-->
 <div class="page-header">
@@ -248,7 +241,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/7.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/7.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Denis Rosenblum</p>
@@ -263,7 +256,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/6.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/6.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Harvey Mattos</p>
@@ -278,7 +271,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/5.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/5.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Catrice Doshier</p>
@@ -293,7 +286,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/1.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/1.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Catherina Bamber</p>
@@ -308,7 +301,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/8.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/8.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Margie Fitts</p>
@@ -323,7 +316,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/5.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/5.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Dana Lott</p>
@@ -338,7 +331,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/6.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/6.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Benedict Vallone</p>
@@ -353,7 +346,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/8.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/8.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Robbie Ruder</p>
@@ -368,7 +361,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/3.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/3.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Micaela Aultman</p>
@@ -383,7 +376,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/4.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/4.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Jacquelynn Sapienza</p>
@@ -398,7 +391,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/9.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/9.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Elida Distefano</p>
@@ -413,7 +406,7 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center border p-3 mb-3 br-7">
 									<div class="avatar avatar-lg brround d-block cover-image"
-										data-image-src="<?php echo base_url('public/assets/images/users/7.jpg'); ?>">
+										data-image-src="<?php echo base_url('assets/images/users/7.jpg'); ?>">
 									</div>
 									<div class="wrapper ml-3">
 										<p class="mb-0 mt-1 text-dark font-weight-semibold">Collin Bridgman</p>
@@ -437,14 +430,15 @@
 						<?php
 						$previous_date = ''; // Initialize a variable to store the previous date
 						foreach ($post as $posts):
-							$timestamp = strtotime($posts->time_posted);
+							
+							$timestamp = strtotime($posts->time_posted.' UTC');
 							$formatted_date = date('d M. Y', $timestamp);
 							
 							// Calculate the time difference in seconds
-							$time_difference = $timestamp;
+							// $time_difference = $timestamp;
 
 							// Convert seconds to a human-readable format
-							$time_since_posted = get_time_elapsed_string($time_difference);
+							$time_since_posted = get_time_elapsed_string($timestamp);
 
 							// Check if the current date is the same as the previous date
 							$same_date = ($formatted_date === $previous_date);
@@ -455,7 +449,7 @@
 						<?php endif; ?>
 
 						<li>
-							<?php if (strpos($posts->content, 'youtube.com') === false): ?>
+							<?php if (strpos($posts->content, 'https://www.youtube.com/') === false): ?>
 							<i class="fa fa-envelope bg-primary"></i>
 							<div class="timelineleft-item">
 								<span class="time"><i
@@ -466,7 +460,7 @@
 									<?php echo $posts->content; ?>
 								</div>
 								<div class="timelineleft-footer">
-									<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>Read More</a>"; ?>
+									<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>View Post</a>"; ?>
 								</div>
 							</div>
 							<?php else: // Content is text ?>
@@ -489,11 +483,11 @@
 									</div>
 								</div>
 								<div class="timelineleft-footer">
-									<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>Read More</a>"; ?>
+									<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>View Post</a>"; ?>
 								</div>
 							</div>
 							<?php endif; ?>
-							<?php endif; ?>
+						<?php endif; ?>
 						</li>
 						<?php $previous_date = $formatted_date; // Update the previous date ?>
 						<?php endforeach; ?>
