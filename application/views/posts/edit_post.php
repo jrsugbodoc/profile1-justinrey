@@ -7,34 +7,47 @@
 			<div class="card-body">
 				<div class="mt-2">
 					<?php $attributes = array('id' => 'create_form', 'class' => 'form_horizontal'); ?>
-					<?php echo validation_errors("<p class='bg-danger'>"); ?>
 					<?php echo form_open('post/edit/'. $post_data->post_id .'', $attributes); ?>
 
 					<div class="form-group">
-					<?php echo form_label('Post Content'); ?>
-                    <?php
+						<?php echo form_label('Add your link here'); ?>
+						<?php
+                        $data = array(
+                            'class'     => 'form-control',
+                            'name'      => 'link',
+                            'value'     => $post_data->link,
+							'rows'      => 1
+						);
+						echo form_error('link', '<div class="text-danger">', '</div>');
+                        ?>
+						<?php echo form_textarea($data); ?>
+					</div>
+					<div class="form-group">
+						<?php echo form_label('Post Content'); ?>
+						<?php echo form_error('check_non_empty', '<div class="text-danger">', '</div>'); ?>
+						<?php
                         $data = array(
                             'class' => 'form-control',
                             'name' => 'content',
                             'value' => $post_data->content
                         )
                     ?>
-                    <?php echo form_textarea($data); ?>
+						<?php echo form_textarea($data); ?>
 					</div>
-                        <div class="timelineleft-footer">
-                            <div class="form-group" style="display: inline-block;">
-                            <?php
+					<div class="timelineleft-footer">
+						<div class="form-group" style="display: inline-block;">
+							<?php
                                 $data = array(
                                     'class' => 'btn btn-primary',
                                     'name' => 'submit',
                                     'value' => 'Update'
                                 )
                                 ?>
-                                <?php echo form_submit($data); ?>
-                    
-                            </div>
-                            <div class="form-group" style="display: inline-block; margin-left: 10px;">
-                            <?php
+							<?php echo form_submit($data); ?>
+
+						</div>
+						<div class="form-group" style="display: inline-block; margin-left: 10px;">
+							<?php
                                 // Add a "Cancel" button here
                                 $data = array(
                                     'class' => 'btn btn-secondary',
@@ -44,9 +57,9 @@
                                 );
                                 echo form_submit($data);
                                 ?>
-                                </div>
-                            <?php echo form_close(); ?>
-                        </div>
+						</div>
+						<?php echo form_close(); ?>
+					</div>
 				</div>
 			</div>
 		</div>

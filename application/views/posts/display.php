@@ -42,21 +42,23 @@
 						</a>
 					</div>
 				</div>
-				<?php if (strpos($post_data->content, 'https://www.youtube.com/') == true): ?>
-				<?php
-					$youtube_url = $post_data->content;
-					$video_id = get_youtube_video_id($youtube_url);
-				?>
+				<?php if ($post_data->category === 'text'): ?>
+					<p>
+						<?php echo $post_data->content;?>
+					</p>
+				<?php else: ?>
+					<?php $video_id = get_youtube_video_id($post_data->link); ?>
 					<?php if ($video_id): ?>
+					<strong><?php echo ($post_data->content); ?></strong>
+					<br><br>
 					<div class="embed-responsive embed-responsive-16by9 w-75">
-						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
+						<iframe class="embed-responsive-item"
+							src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
 							allowfullscreen></iframe>
 					</div>
 					<?php endif;?>
-				<?php else: ?>
-				<p>
-					<?php echo $post_data->content;?>
-				</p>
+				
+				
 				<?php endif; ?>
 				<div class="media py-3 mt-0 border-top">
 					<?php if ($allow_edit_delete): ?>
