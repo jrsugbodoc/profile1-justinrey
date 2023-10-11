@@ -22,8 +22,11 @@ class Post_model extends CI_Model{
         $this->db->where('post_id', $post_id);
         $query = $this->db->get();
 
+        //Checks if there is available user 
     if ($query->num_rows() > 0) {
         $result = $query->row();
+
+        //returns the first name and last name
         return $result->first_name . ' ' . $result->last_name;
         
         }

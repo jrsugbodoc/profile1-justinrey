@@ -430,11 +430,9 @@
 						$previous_date = ''; // Initialize a variable to store the previous date
 						foreach ($post as $posts):
 							
+							//Calculate the time difference in seconds
 							$timestamp = strtotime($posts->time_posted.' UTC');
 							$formatted_date = date('d M. Y', $timestamp);
-							
-							// Calculate the time difference in seconds
-							// $time_difference = $timestamp;
 
 							// Convert seconds to a human-readable format
 							$time_since_posted = get_time_elapsed_string($timestamp);
@@ -455,7 +453,7 @@
 								<h3 class="timelineleft-header">
 									<?php echo $posts->first_name . ' ' . $posts->last_name; ?> <span>posted</span></h3>
 								<div class="timelineleft-body">
-									<?php echo $posts->content; ?>
+									<?php echo nl2br($posts->content); ?>
 								</div>
 								<div class="timelineleft-footer">
 									<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>View Post</a>"; ?>
@@ -471,7 +469,7 @@
 								<div class="timelineleft-body">
 									<?php $video_id = get_youtube_video_id($posts->link); ?>
 										<?php if ($video_id): ?>
-										<strong><?php echo ($posts->content); ?></strong>
+										<strong><?php echo nl2br($posts->content); ?></strong>
 										<br><br>
 										<div class="embed-responsive embed-responsive-16by9 w-75">
 											<iframe class="embed-responsive-item"

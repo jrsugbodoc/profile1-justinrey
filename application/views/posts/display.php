@@ -44,12 +44,12 @@
 				</div>
 				<?php if ($post_data->category === 'text'): ?>
 					<p>
-						<?php echo $post_data->content;?>
+						<?php echo nl2br($post_data->content);?>
 					</p>
 				<?php else: ?>
 					<?php $video_id = get_youtube_video_id($post_data->link); ?>
 					<?php if ($video_id): ?>
-					<strong><?php echo ($post_data->content); ?></strong>
+					<strong><?php echo nl2br($post_data->content); ?></strong>
 					<br><br>
 					<div class="embed-responsive embed-responsive-16by9 w-75">
 						<iframe class="embed-responsive-item"
