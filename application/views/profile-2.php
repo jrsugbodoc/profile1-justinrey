@@ -1,3 +1,7 @@
+<?php $this->load->view('layouts/head');?>
+
+</head>
+<?php $this->load->view('layouts/menu');?>
 <!--Page header-->
 <div class="page-header">
 	<div class="page-leftheader">
@@ -132,7 +136,7 @@
 	</div><!-- /.profile-cover -->
 </div>
 <div class="text-lg-right mt-4 mt-lg-0">
-	<a class="btn btn-primary " href="<?php echo base_url();?>post/create">Create Post</a>
+	<a class="btn btn-primary " data-target="#modaldemo3" data-toggle="modal">Create Post</a>
 </div>
 <!-- Row -->
 <div class="row">
@@ -445,7 +449,7 @@
 						<li class="timeleft-label"><span class="bg-danger"><?php echo $formatted_date; ?></span></li>
 						<?php endif; ?>
 						<li>
-						<?php if ($posts->category === 'text'): ?>
+							<?php if ($posts->category === 'text'): ?>
 							<i class="fa fa-envelope bg-primary"></i>
 							<div class="timelineleft-item">
 								<span class="time"><i
@@ -468,21 +472,21 @@
 									<?php echo $posts->first_name . ' ' . $posts->last_name; ?> shared a video</h3>
 								<div class="timelineleft-body">
 									<?php $video_id = get_youtube_video_id($posts->link); ?>
-										<?php if ($video_id): ?>
-										<strong><?php echo nl2br($posts->content); ?></strong>
-										<br><br>
-										<div class="embed-responsive embed-responsive-16by9 w-75">
-											<iframe class="embed-responsive-item"
-												src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
-												allowfullscreen></iframe>
-										</div>
-										<?php endif;?>
+									<?php if ($video_id): ?>
+									<strong><?php echo nl2br($posts->content); ?></strong>
+									<br><br>
+									<div class="embed-responsive embed-responsive-16by9 w-75">
+										<iframe class="embed-responsive-item"
+											src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
+											allowfullscreen></iframe>
+									</div>
+									<?php endif;?>
 								</div>
 								<div class="timelineleft-footer">
 									<?php echo "<a href='" . base_url() . "post/display/" . $posts->post_id . "' class='btn btn-primary text-white btn-sm'>View Post</a>"; ?>
 								</div>
 							</div>
-						<?php endif; ?>
+							<?php endif; ?>
 						</li>
 						<?php $previous_date = $formatted_date; // Update the previous date ?>
 						<?php endforeach; ?>
@@ -495,3 +499,95 @@
 		</div>
 	</div>
 </div>
+<div class="modal" id="modaldemo3">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content modal-content-demo">
+			<div class="modal-header">
+				<h6 class="modal-title">Add a Post</h6>
+				<button aria-label="Close" class="close" data-dismiss="modal" type="button">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<div id="validation_errors" class="text-danger"></div> <!-- Display validation errors here -->
+
+
+				<div class="mt-2">
+					<?php $attributes = array('id' => 'create_form', 'class' => 'form_horizontal'); ?>
+					<?php echo form_open('post/create', $attributes,'create_form'); ?>
+					<div class="form-group">
+						<?php echo form_label('Add your link here'); ?>
+						<?php
+                                        $data = array(
+                                            'class' => 'form-control',
+                                            'name' => 'link',
+                                            'rows' => 1
+                                        );
+                                        echo form_error('link', '<div class="text-danger">', '</div>');
+                                        ?>
+						<?php echo form_textarea($data); ?>
+					</div>
+					<div class="form-group">
+						<?php echo form_label('Post Content'); ?>
+						<?php echo form_error('check_non_empty', '<div class="text-danger">', '</div>'); ?>
+						<?php
+                                        $data = array(
+                                            'class' => 'form-control',
+                                            'name' => 'content'
+                                        );
+                                        ?>
+						<?php echo form_textarea($data); ?>
+					</div>
+					<div class="timelineleft-footer">
+						<div class="form-group" style="display: inline-block;">
+							<?php
+                                            $data = array(
+                                                'class' => 'btn btn-primary',
+                                                'name' => 'submit',
+                                                'value' => 'Add Post'
+                                            )
+                                            ?>
+							<?php echo form_submit($data); ?>
+						</div>
+						
+					</div>
+					<?php echo form_close(); ?>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<<?php $this->load->view('layouts/footer');?> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#create_form').on('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Perform an AJAX request to submit the form data
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url('post/create'); ?>',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Form submission succeeded
+                        window.location.href = "<?php echo base_url('post/index'); ?>"; // Redirect to index
+                    } else {
+                        // Form validation failed
+                        $('#validation_errors').html(response.validation_errors); // Display validation errors in the modal
+                    }
+                }
+            });
+        });
+    });
+</script>
+	</body>
+</html>

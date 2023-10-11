@@ -36,37 +36,37 @@ class Post extends CI_Controller {
             
         }
     
-    public function create(){
-
-        $this->form_validation->set_rules('content', 'Content', 'trim');
-        $this->form_validation->set_rules('check_non_empty', 'Check Non-Empty', 'callback_check_non_empty');
-        $this->form_validation->set_rules('link', 'Link', 'trim|callback_valid_youtube_link');
-
-
-        // Checks if form validation failed
-        if($this->form_validation->run()== FALSE){
-            $data['main_view'] = 'posts/create_post';
-            $this->load->view('layouts/main', $data);
-
-        }else{
-            $category = empty($this->input->post('link')) ? 'text' : 'video';
-
-            $data = array(
-                'user_post_id'  => $this->session->userdata('user_id'),
-                'content'       => $this->input->post('content'),
-                'link'          => $this->input->post('link'),
-                'category'      => $category,
-                'time_posted'   => gmdate('Y-m-d h:i:s')
-            );
-
-            // Insert the data in the db
-            if($this->post_model->create_post($data)){
-
-                redirect("post/index");
-
+        public function create() {
+            $this->form_validation->set_rules('content', 'Content', 'trim');
+            $this->form_validation->set_rules('check_non_empty', 'Check Non-Empty', 'callback_check_non_empty');
+            $this->form_validation->set_rules('link', 'Link', 'trim|callback_valid_youtube_link');
+        
+            if ($this->form_validation->run() == FALSE) {
+                // Form validation failed
+                $data['validation_errors'] = validation_errors(); // Get validation errors
+                $this->output
+                     ->set_content_type('application/json')
+                     ->set_output(json_encode($data)); // Return errors as JSON
+            } else {
+                // Validation passed
+                $category = empty($this->input->post('link')) ? 'text' : 'video';
+        
+                $data = array(
+                    'user_post_id'  => $this->session->userdata('user_id'),
+                    'content'       => $this->input->post('content'),
+                    'link'          => $this->input->post('link'),
+                    'category'      => $category,
+                    'time_posted'   => gmdate('Y-m-d h:i:s')
+                );
+        
+                if ($this->post_model->create_post($data)) {
+                    $response = array('success' => true);
+                    $this->output
+                         ->set_content_type('application/json')
+                         ->set_output(json_encode($response)); // Return success as JSON
+                }
             }
         }
-    }
     
     public function check_non_empty() {
         $content = $this->input->post('content');

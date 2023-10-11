@@ -1,3 +1,6 @@
+<?php $this->load->view('layouts/head');?>
+</head>
+<?php $this->load->view('layouts/menu');?>
 <div class="row pt-7">
 	<div class="col-xl-12 col-lg-12 col-md-12">
 		<div class="card mb-lg-0">
@@ -65,3 +68,6 @@
 		</div>
 	</div>
 </div>
+<?php $this->load->view('layouts/footer');?>
+	</body>  
+</html>
